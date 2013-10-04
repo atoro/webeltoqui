@@ -1,0 +1,124 @@
+::selection {
+	color: white;
+	background-color: #841e30;
+}
+header {
+	background-image:url(../imagenes/header.jpg);
+	width: 100%;
+	height:160px;
+}
+footer {
+	background-color: #e7e6dc;
+	width: 100%;
+	height: 92px;
+}
+nav {
+	width: 698px;
+	float:right;
+	padding-top: 60px;
+}
+#header {
+	width: 980px;
+	height: 150px;
+	margin: auto;
+	padding-top:10px;	
+}
+#contenido {
+	width:100%;
+	height:368px;
+	background-color: #e7e6dc;
+}
+#contenidodentro {
+	width: 980px;
+	height:368px;
+	margin: auto;
+	background-color: #e7e6dc;
+}
+#emagenic {
+	padding-top:20px;
+	text-align: center;
+	font-family: Helvetica;
+	font-size: 14px;
+	color: #3f1f10;
+	font-weight:100;
+	font-variant: normal;
+}
+#info {
+	background-color: #e7e6dc;
+	width: 100%;
+	height: 180px;
+	margin: auto;
+}
+#infocontenido {
+	background-color: #e7e6dc;
+	width: 980px;
+	height: 180px;
+	margin: auto;
+}
+#footer {
+	background-color: #e7e6dc;
+	width: 980px;
+	height: 92px;
+	margin: auto;
+}
+#lineafooter {
+	background-color: #cdcbbb;
+	width: 980px;
+	height: 1px;
+}
+#logo {
+	width: 282px;
+	height: 131px;
+	display: inline-block;
+	float:left;
+}
+.textos {
+	font-family: Helvetica;
+	font-size: 14px;
+	color: #3f1f10;
+	font-weight:100;
+	font-variant: normal;
+}
+.cotiza {
+	font-family: helvetica;
+	font-size: 24px;
+	color: #fff;
+	font-weight: lighter;
+	font-weight: 100;
+	font-variant: normal;
+	padding-left: 20px;
+}
+.detalle {
+	font-family: helvetica;
+	font-size: 14px;
+	color: #fff;
+	font-weight: lighter;
+	font-weight: 100;
+	font-variant: normal;
+	padding-left: 20px;
+}
+.li {
+	display: inline;
+	margin: 0;
+	font-family: "Times New Roman";
+	font-size: 16px;
+	color: #663319;
+	font-style: normal;
+	line-height: normal;
+	font-weight: 100;
+	text-decoration: none;
+	padding-left: 20px;
+	float:right;
+}
+.li:hover {
+	display: inline;
+	margin: 0;
+	font-family: "Times New Roman";
+	font-size: 16px;
+	color: #9f122b;
+	font-style: normal;
+	line-height: normal;
+	font-weight: 100;
+	padding-left: 20px;
+	float:right;
+}
