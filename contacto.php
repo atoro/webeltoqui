@@ -1,8 +1,50 @@
+<?php include("Conexion.php"); 
+	$listado = "select * from  horario";
+	$sentencia = mysql_query($listado,$conn);
+	while($rs=mysql_fetch_array($sentencia,$mibase)){
+		$horas = str_replace("\r\n","<br>",$rs["horas"]);
+	}
+	$listado = "select * from  datos";
+	$sentencia = mysql_query($listado,$conn);
+	while($rs=mysql_fetch_array($sentencia,$mibase)){
+		$direccion = str_replace("\r\n","<br>",$rs["direccion"]);
+		$telefono = str_replace("\r\n","<br>",$rs["telefono"]);
+		$correo = str_replace("\r\n","<br>",$rs["correo"]);		
+	}
+	$listado = "select * from  productos_pie";
+	$sentencia = mysql_query($listado,$conn);
+	while($rs=mysql_fetch_array($sentencia,$mibase)){
+		$columna1 = str_replace("\r\n","<br>",$rs["columna1"]);
+		$columna2 = str_replace("\r\n","<br>",$rs["columna2"]);			
+	}
+	if ($_POST["Enviar"]){
+	include_once("securimage/securimage.php");
+	$img = new securimage();
+	$valido_captcha = $img->check($_POST['captchacode']);
+	if ($valido_captcha){
+	$destinatario = $correo ;
+	$nombre = $_POST["Nombre"];
+	$telefono = $_POST["Telefono"];
+	$mail = $_POST["Email"];
+	$consulta = $_POST["Consulta"];
+	$asunto = "Consulta sitio web"; 
+	$cuerpo = "<table width=100% border=1 cellspacing=0 cellpadding=0><tr><td>NOMBRE: $nombre</td></tr><tr><td>TELEFONO: $telefono		    </td></tr><tr><td>MAIL: $mail</td></tr><tr><td>CONSULTA: $consulta</td></tr></table>";
+	$headers = "MIME-Version: 1.0\r\n"; 
+	$headers .= "Content-type: text/html; charset=iso-8859-1\r\n"; 
+	$headers .= "From: $nombre <$mail>\r\n"; 
+	mail($destinatario,$asunto,$cuerpo,$headers);
+	header("location: postconsulta.php","_self");
+	}else{
+    echo "Consulta no enviada, debe escribir correctamente el codigo de seguridad";
+	}
+
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Muebleria el Toqui</title>
-    <meta charset="utf-8">
+    <meta charset="iso-8859-1">
     <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen">
     <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
     <link rel="stylesheet" href="css/estilos.css" type="text/css" media="screen">
@@ -107,7 +149,7 @@ function MM_swapImage() { //v3.0
                 <div class="bg">
                     <div class="bg-top-shadow">
                    	  <div id="banner"> 
-                        	<div id="banner_img"><img src="imagenes/banner1.jpg" width="940" height="140"></div>
+                        	<div id="banner_img"><img src="imagenes/banner4.jpg" width="940" height="140"></div>
                       </div>
                     </div>
                 </div>
@@ -124,30 +166,88 @@ function MM_swapImage() { //v3.0
         <tr>
           <td width="310" height="225"><table width="310" border="0" cellspacing="0" cellpadding="0">
             <tr>
-              <td height="225" background="imagenes/nosotros.jpg"><table width="60%" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                  <td height="175">&nbsp;</td>
-                </tr>
-                <tr>
-                  <td height="30" valign="middle" bgcolor="#841E30" class="detalle">ver productos</td>
-                </tr>
-              </table></td>
+              <td height="225"><img src="imagenes/contacto.jpg" width="310" height="225"></td>
             </tr>
           </table></td>
           <td width="25"></td>
           <td height="225" ><table width="100%" height="285" border="0" cellpadding="0" cellspacing="0">
             <tr>
-              <td height="36" valign="top" class="titulos">Nosotros</td>
+              <td height="36" valign="top" class="titulos">Contacto</td>
             </tr>
             <tr>
-              <td height="214"><p class="textos">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor <br>
-                (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal.</p>
-                <p class="textos">&nbsp;</p>
-                <p class="textos">manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó <br>
-                  como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. <br>
-                  Fue popularizado en los 60s con la creación de las hojas &quot;Letraset&quot;, las cuales contenian pasajes de <br>
-                  Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, <br>
-              el cual incluye versiones de Lorem Ipsum.</p></td>
+              <td height="214"><table width="50%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td width="318" height="400" valign="top" class="text5"><form name="form1" method="post" action="contacto.php">
+                    <table width="53%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td height="20" align="left" class="productos"><h2 class="textos">Nombre</h2></td>
+                      </tr>
+                      <tr>
+                        <td width="451" align="left"><label>
+                          <input name="Nombre" type="text" class="boton2" id="Nombre" size="50" />
+                        </label></td>
+                      </tr>
+                      <tr>
+                        <td height="5" align="left"></td>
+                      </tr>
+                      <tr>
+                        <td height="20" align="left" class="texto_b"><h2 class="textos">Tel&eacute;fono</h2></td>
+                      </tr>
+                      <tr>
+                        <td align="left"><input name="Telefono" type="text" class="boton2" id="Telefono" size="50" /></td>
+                      </tr>
+                      <tr>
+                        <td height="5" align="left"></td>
+                      </tr>
+                      <tr>
+                        <td height="20" align="left" class="texto_b"><h2 class="textos">Mail</h2></td>
+                      </tr>
+                      <tr>
+                        <td align="left"><input name="Email" type="text" class="boton2" id="Email" size="50" /></td>
+                      </tr>
+                      <tr>
+                        <td height="5" align="left"></td>
+                      </tr>
+                      <tr>
+                        <td height="20" align="left" class="texto_b"><h2 class="textos">Consulta</h2></td>
+                      </tr>
+                      <tr>
+                        <td align="left"><textarea name="Consulta" cols="50" rows="4" class="boton3" id="Consulta"></textarea></td>
+                      </tr>
+                      <tr>
+                        <td height="5" align="left"></td>
+                      </tr>
+                      <tr>
+                        <td align="left"><div align="left"><img src="/securimage/securimage_show.php" name="captcha" id="captcha" /></div></td>
+                      </tr>
+                      <tr>
+                        <td height="27" align="left"><div align="left"><a href="#" class="textos" onclick="document.getElementById('captcha').src = '/securimage/securimage_show.php?' + Math.random(); return false">Refrescar la imagen</a></div></td>
+                      </tr>
+                      <tr>
+                        <td align="left"><div align="center">
+                          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                              <td width="33%" class="textossesion"><h2 class="textos">Codigo de seguridad</h2></td>
+                              <td width="67%"><div align="left">
+                                <input name="captchacode" type="text" class="boton5" id="captchacode" size="20" />
+                              </div></td>
+                            </tr>
+                          </table>
+                        </div></td>
+                      </tr>
+                      <tr>
+                        <td align="left">&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td align="left"><div align="left">
+                          <input name="Enviar" type="submit" class="boton4" id="Enviar" value="Enviar" />
+                        </div></td>
+                      </tr>
+                    </table>
+                  </form></td>
+                  <td width="10" valign="top">&nbsp;</td>
+                </tr>
+              </table>                <p class="textos">&nbsp;</p></td>
             </tr>
           </table></td>
         </tr>
@@ -164,8 +264,7 @@ function MM_swapImage() { //v3.0
               <td width="408" valign="middle" bgcolor="#d0cfc5" class="textos"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td width="4%">&nbsp;</td>
-                  <td width="96%" height="60" valign="middle"><p>Lunes a Viernes de 08:00 a 13:00 hrs - 15:00 a 19:00 hrs </p>
-                    <p>Sábados de 08:00 hrs a 13:00 hrs </p></td>
+                  <td width="96%" height="60" valign="middle"><p><?php echo $horas; ?></p></td>
                 </tr>
               </table></td>
               <td width="25">&nbsp;</td>
@@ -193,35 +292,27 @@ function MM_swapImage() { //v3.0
     	<table width="100%" border="0" cellspacing="0" cellpadding="0">
     	  <tr>
     	    <td height="25" colspan="3">&nbsp;</td>
-   	      </tr>
+  	    </tr>
     	  <tr>
     	    <td width="17%" height="32" class="textos"><strong>Productos</strong></td>
     	    <td width="23%">&nbsp;</td>
     	    <td class="textos"><strong>Casa Matriz</strong></td>
-   	      </tr>
+  	    </tr>
     	  <tr>
-    	    <td height="16" class="textos">Puertas - Ventanas<br>
-    	      Puntos - Bow Window<br>
-    	      Living y Sitiales<br>
-    	      Muebles de todo tipo<br>
-   	        Maderas Torneadas</td>
-    	    <td class="textos">Piezas de escalera<br>
-    	      Artesanía para Decoración<br>
-    	      Juguetes de Maderas<br>
-    	      Muebles para Niños<br>
-   	        Tapicería</td>
-    	    <td class="textos">Av. Recreo esquina. Frankfort 377 (hacia la cordillera), Rancagua<br>
-    	      Fono: 2 250796  - Cel: 9449 8620<br>
-   	        contacto@muebleriaeltoqui.cl</td>
-   	      </tr>
+    	    <td height="16" class="textos"><?php echo $columna1; ?></td>
+    	    <td class="textos"><?php echo $columna2; ?></td>
+    	    <td class="textos"><?php echo $direccion; ?><br>
+    	      <?php echo $telefono; ?><br>
+    	      <?php echo $correo; ?></td>
+  	    </tr>
   	  </table>
   </div>
 </div>
 <footer>
 	<div id="footer">
     	<div id="lineafooter"></div>
-        <div id="emagenic"> sitio desarrollado por emagenic.cl</div>
-    </div>
+    	<div id="emagenic"> sitio desarrollado por <a href="http://emagenic.cl/" target="new" class="textos">emagenic.cl</a></div>
+	</div>
 </footer>  
 </body>
 </html>

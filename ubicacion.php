@@ -1,8 +1,34 @@
+<?php include("Conexion.php"); 
+	$listado = "select * from  horario";
+	$sentencia = mysql_query($listado,$conn);
+	while($rs=mysql_fetch_array($sentencia,$mibase)){
+		$horas = str_replace("\r\n","<br>",$rs["horas"]);
+	}
+	$listado = "select * from  datos";
+	$sentencia = mysql_query($listado,$conn);
+	while($rs=mysql_fetch_array($sentencia,$mibase)){
+		$direccion = str_replace("\r\n","<br>",$rs["direccion"]);
+		$telefono = str_replace("\r\n","<br>",$rs["telefono"]);
+		$correo = str_replace("\r\n","<br>",$rs["correo"]);		
+	}
+	$listado = "select * from  productos_pie";
+	$sentencia = mysql_query($listado,$conn);
+	while($rs=mysql_fetch_array($sentencia,$mibase)){
+		$columna1 = str_replace("\r\n","<br>",$rs["columna1"]);
+		$columna2 = str_replace("\r\n","<br>",$rs["columna2"]);
+				
+	}
+	$listado = "select * from  direccion";
+	$sentencia = mysql_query($listado,$conn);
+	while($rs=mysql_fetch_array($sentencia,$mibase)){
+		$mapa = str_replace("\r\n","<br>",$rs["mapa"]);		
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Muebleria el Toqui</title>
-    <meta charset="utf-8">
+    <meta charset="iso-8859-1">
     <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen">
     <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
     <link rel="stylesheet" href="css/estilos.css" type="text/css" media="screen">
@@ -107,7 +133,7 @@ function MM_swapImage() { //v3.0
                 <div class="bg">
                     <div class="bg-top-shadow">
                    	  <div id="banner"> 
-                        	<div id="banner_img"><img src="imagenes/banner4.jpg" width="940" height="140"></div>
+                        	<div id="banner_img"><img src="imagenes/banner3.jpg" width="940" height="140"></div>
                       </div>
                     </div>
                 </div>
@@ -119,25 +145,14 @@ function MM_swapImage() { //v3.0
 	<div id="contenidodentro">
       <table width="980" border="0" cellspacing="0" cellpadding="0">
         <tr>
-          <td height="30" colspan="3">&nbsp;</td>
+          <td height="30">&nbsp;</td>
         </tr>
         <tr>
-          <td width="310" height="225"><table width="310" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-              <td height="225"><img src="imagenes/contacto.jpg" width="310" height="225"></td>
-            </tr>
-          </table></td>
-          <td width="25"></td>
-          <td height="225" ><table width="100%" height="285" border="0" cellpadding="0" cellspacing="0">
-            <tr>
-              <td height="36" valign="top" class="titulos">Contacto</td>
-            </tr>
-            <tr>
-              <td height="214"><p class="textos">Su 
-              consulta fue enviada exitosamente.</p>
-              <p class="textos">pronto nos pondremos en contacto con usted </p>              <p class="textos">&nbsp;</p></td>
-            </tr>
-          </table></td>
+          <td width="980" height="300">
+          <iframe width="980" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.cl/maps?t=m&amp;ie=UTF8&amp;ll=-34.149495,-70.735978&amp;spn=0.001554,0.005252&amp;z=18&amp;output=embed"></iframe>
+          <p><br />
+          </p>
+          <p><span class="textos"><strong>Muebler&iacute;a &quot;El Toqui&quot;</strong> - <?php echo $mapa; ?></span></p></td>
         </tr>
       </table>
       <table width="980" border="0" cellspacing="0" cellpadding="0">
@@ -152,8 +167,7 @@ function MM_swapImage() { //v3.0
               <td width="408" valign="middle" bgcolor="#d0cfc5" class="textos"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td width="4%">&nbsp;</td>
-                  <td width="96%" height="60" valign="middle"><p>Lunes a Viernes de 08:00 a 13:00 hrs - 15:00 a 19:00 hrs </p>
-                    <p>Sábados de 08:00 hrs a 13:00 hrs </p></td>
+                  <td width="96%" height="60" valign="middle"><p><?php echo $horas; ?></p></td>
                 </tr>
               </table></td>
               <td width="25">&nbsp;</td>
@@ -173,7 +187,7 @@ function MM_swapImage() { //v3.0
           <td height="25">&nbsp;</td>
         </tr>
       </table>
-    </div>
+  </div>
 </div>
 <div id="info"> 
   <div id="infocontenido">
@@ -181,35 +195,27 @@ function MM_swapImage() { //v3.0
     	<table width="100%" border="0" cellspacing="0" cellpadding="0">
     	  <tr>
     	    <td height="25" colspan="3">&nbsp;</td>
-   	      </tr>
+  	    </tr>
     	  <tr>
     	    <td width="17%" height="32" class="textos"><strong>Productos</strong></td>
     	    <td width="23%">&nbsp;</td>
     	    <td class="textos"><strong>Casa Matriz</strong></td>
-   	      </tr>
+  	    </tr>
     	  <tr>
-    	    <td height="16" class="textos">Puertas - Ventanas<br>
-    	      Puntos - Bow Window<br>
-    	      Living y Sitiales<br>
-    	      Muebles de todo tipo<br>
-   	        Maderas Torneadas</td>
-    	    <td class="textos">Piezas de escalera<br>
-    	      Artesanía para Decoración<br>
-    	      Juguetes de Maderas<br>
-    	      Muebles para Niños<br>
-   	        Tapicería</td>
-    	    <td class="textos">Av. Recreo esquina. Frankfort 377 (hacia la cordillera), Rancagua<br>
-    	      Fono: 2 250796  - Cel: 9449 8620<br>
-   	        contacto@muebleriaeltoqui.cl</td>
-   	      </tr>
+    	    <td height="16" class="textos"><?php echo $columna1; ?></td>
+    	    <td class="textos"><?php echo $columna2; ?></td>
+    	    <td class="textos"><?php echo $direccion; ?><br>
+    	      <?php echo $telefono; ?><br>
+    	      <?php echo $correo; ?></td>
+  	    </tr>
   	  </table>
   </div>
 </div>
 <footer>
 	<div id="footer">
     	<div id="lineafooter"></div>
-        <div id="emagenic"> sitio desarrollado por emagenic.cl</div>
-    </div>
+    	<div id="emagenic"> sitio desarrollado por <a href="http://emagenic.cl/" target="new" class="textos">emagenic.cl</a></div>
+	</div>
 </footer>  
 </body>
 </html>

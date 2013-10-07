@@ -145,6 +145,7 @@ nav {
 	color: #3f1f10;
 	font-weight:100;
 	font-variant: normal;
+	text-decoration:none;
 }
 .cotiza {
 	font-family: helvetica;
@@ -163,7 +164,8 @@ nav {
 	font-weight: lighter;
 	font-weight: 100;
 	font-variant: normal;
-	padding-left: 20px;
+	padding-left: 10px;
+	text-decoration:none;
 }
 .li {
 	display: inline;

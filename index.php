@@ -1,8 +1,35 @@
+<?php include("Conexion.php"); 
+	$listado = "select * from  inicio";
+	$sentencia = mysql_query($listado,$conn);
+	while($rs=mysql_fetch_array($sentencia,$mibase)){
+		$titulo = str_replace("\r\n","<br>",$rs["titulo"]);
+		$descripcion = str_replace("\r\n","<br>",$rs["descripcion"]);
+	}
+	$listado = "select * from  horario";
+	$sentencia = mysql_query($listado,$conn);
+	while($rs=mysql_fetch_array($sentencia,$mibase)){
+		$horas = str_replace("\r\n","<br>",$rs["horas"]);
+	}
+	$listado = "select * from  datos";
+	$sentencia = mysql_query($listado,$conn);
+	while($rs=mysql_fetch_array($sentencia,$mibase)){
+		$direccion = str_replace("\r\n","<br>",$rs["direccion"]);
+		$telefono = str_replace("\r\n","<br>",$rs["telefono"]);
+		$correo = str_replace("\r\n","<br>",$rs["correo"]);		
+	}
+	$listado = "select * from  productos_pie";
+	$sentencia = mysql_query($listado,$conn);
+	while($rs=mysql_fetch_array($sentencia,$mibase)){
+		$columna1 = str_replace("\r\n","<br>",$rs["columna1"]);
+		$columna2 = str_replace("\r\n","<br>",$rs["columna2"]);
+				
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Muebleria el Toqui</title>
-    <meta charset="utf-8">
+    <meta charset="iso-8859-1">
     <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen">
     <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
     <link rel="stylesheet" href="css/estilos.css" type="text/css" media="screen">
@@ -106,9 +133,48 @@ function MM_swapImage() { //v3.0
         	<div class="bg-top-2">
                 <div class="bg">
                     <div class="bg-top-shadow">
-                   	  <div id="banner"> 
-                        	<div id="banner_img"><img src="imagenes/banner2.jpg" width="940" height="140"></div>
-                      </div>
+                        <div class="main">
+                            <div class="gallery p3">
+                            	<div class="wrapper indent-bot">
+                                    <div id="gallery" class="content">
+                                       <div class="wrapper">
+                                           <div class="slideshow-container">
+                                                <div id="slideshow" class="slideshow"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="thumbs" class="navigation">
+                                        <ul class="thumbs noscript">
+                                            <li>
+                                                <a class="thumb" href="images/gallery-img1.jpg" title=""> <img src="images/thumb-1.jpg" alt="" /><span></span> </a>
+                                            </li> 
+                                            <li>
+                                                <a class="thumb" href="images/gallery-img2.jpg" title=""> <img src="images/thumb-2.jpg" alt="" /> <span></span></a>
+                                            </li> 
+                                            <li>
+                                                <a class="thumb" href="images/gallery-img3.jpg" title=""> <img src="images/thumb-3.jpg" alt="" /> <span></span></a>
+                                            </li> 
+                                            <li>
+                                                <a class="thumb" href="images/gallery-img4.jpg" title=""> <img src="images/thumb-4.jpg" alt="" /> <span></span></a>
+                                            </li> 
+                                            <li>
+                                                <a class="thumb" href="images/gallery-img5.jpg" title=""> <img src="images/thumb-5.jpg" alt="" /> <span></span></a>
+                                            </li> 
+                                            <li>
+                                                <a class="thumb" href="images/gallery-img6.jpg" title=""> <img src="images/thumb-6.jpg" alt="" /> <span></span></a>
+                                            </li>           
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="inner">
+                                    <div class="wrapper">
+                                        <span class="title img-indent3"><?php echo $titulo; ?></span>
+                                        <div class="textos"><?php echo $descripcion; ?></div>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="container_12"></div>
+                        </div>
                     </div>
                 </div>
             </div>	
@@ -119,88 +185,34 @@ function MM_swapImage() { //v3.0
 	<div id="contenidodentro">
       <table width="980" border="0" cellspacing="0" cellpadding="0">
         <tr>
-          <td height="30">&nbsp;</td>
+          <td height="30" colspan="5">&nbsp;</td>
         </tr>
         <tr>
-          <td height="225"><table width="980" border="0" cellspacing="0" cellpadding="0">
+          <td width="310" height="225" background="imagenes/productos/1.jpg"><table width="60%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-              <td height="30" colspan="5">&nbsp;</td>
+              <td height="175">&nbsp;</td>
             </tr>
             <tr>
-              <td width="310" height="225" ><table width="310" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                  <td height="225" background="imagenes/productos/1.jpg"><table width="60%" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                      <td height="175">&nbsp;</td>
-                    </tr>
-                    <tr>
-                      <td height="30" valign="middle" bgcolor="#841E30" class="detalle">ver detalle del producto</td>
-                    </tr>
-                  </table></td>
-                </tr>
-              </table></td>
-              <td width="25"></td>
-              <td width="310" height="225" ><table width="310" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                  <td height="225" background="imagenes/productos/2.jpg"><table width="60%" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                      <td height="175">&nbsp;</td>
-                    </tr>
-                    <tr>
-                      <td height="30" valign="middle" bgcolor="#841E30" class="detalle">ver detalle del producto</td>
-                    </tr>
-                  </table></td>
-                </tr>
-              </table></td>
-              <td width="25"></td>
-              <td width="310" height="225" ><table width="310" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                  <td height="225" background="imagenes/productos/3.jpg"><table width="60%" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                      <td height="175">&nbsp;</td>
-                    </tr>
-                    <tr>
-                      <td height="30" valign="middle" bgcolor="#841E30" class="detalle">ver detalle del producto</td>
-                    </tr>
-                  </table></td>
-                </tr>
-              </table></td>
+              <td height="30" valign="middle" bgcolor="#841E30" class="detalle"><a href="productos.php" class="detalle">ver detalle del producto</a></td>
             </tr>
-          </table>
-          
-          
-            <table width="980" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td height="30" colspan="5">&nbsp;</td>
-              </tr>
-              <tr>
-                <td width="310" height="225" background="imagenes/productos/4.jpg"><table width="60%" border="0" cellspacing="0" cellpadding="0">
-                  <tr>
-                    <td height="175">&nbsp;</td>
-                  </tr>
-                  <tr>
-                    <td height="30" valign="middle" bgcolor="#841E30" class="detalle">ver detalle del producto</td>
-                  </tr>
-                </table></td>
-                <td width="25"></td>
-                <td width="310" height="225" background="imagenes/productos/5.jpg"><table width="60%" border="0" cellspacing="0" cellpadding="0">
-                  <tr>
-                    <td height="175">&nbsp;</td>
-                  </tr>
-                  <tr>
-                    <td height="30" valign="middle" bgcolor="#841E30" class="detalle">ver detalle del producto</td>
-                  </tr>
-                </table></td>
-                <td width="25"></td>
-                <td width="310" height="225" background="imagenes/productos/6.jpg"><table width="60%" border="0" cellspacing="0" cellpadding="0">
-                  <tr>
-                    <td height="175">&nbsp;</td>
-                  </tr>
-                  <tr>
-                    <td height="30" valign="middle" bgcolor="#841E30" class="detalle">ver detalle del producto</td>
-                  </tr>
-                </table></td>
-              </tr>
+          </table></td>
+          <td width="25"></td>
+          <td width="310" height="225" background="imagenes/productos/2.jpg"><table width="60%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td height="175">&nbsp;</td>
+            </tr>
+            <tr>
+              <td height="30" valign="middle" bgcolor="#841E30" class="detalle"><a href="productos.php" class="detalle">ver detalle del producto</a></td>
+            </tr>
+          </table></td>
+          <td width="25"></td>
+          <td width="310" height="225" background="imagenes/productos/3.jpg"><table width="60%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td height="175">&nbsp;</td>
+            </tr>
+            <tr>
+              <td height="30" valign="middle" bgcolor="#841E30" class="detalle"><a href="productos.php" class="detalle">ver detalle del producto</a></td>
+            </tr>
           </table></td>
         </tr>
       </table>
@@ -216,8 +228,7 @@ function MM_swapImage() { //v3.0
               <td width="408" valign="middle" bgcolor="#d0cfc5" class="textos"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td width="4%">&nbsp;</td>
-                  <td width="96%" height="60" valign="middle"><p>Lunes a Viernes de 08:00 a 13:00 hrs - 15:00 a 19:00 hrs </p>
-                    <p>Sábados de 08:00 hrs a 13:00 hrs </p></td>
+                  <td width="96%" height="60" valign="middle"><p><?php echo $horas; ?></p></td>
                 </tr>
               </table></td>
               <td width="25">&nbsp;</td>
@@ -252,19 +263,11 @@ function MM_swapImage() { //v3.0
     	    <td class="textos"><strong>Casa Matriz</strong></td>
    	      </tr>
     	  <tr>
-    	    <td height="16" class="textos">Puertas - Ventanas<br>
-    	      Puntos - Bow Window<br>
-    	      Living y Sitiales<br>
-    	      Muebles de todo tipo<br>
-   	        Maderas Torneadas</td>
-    	    <td class="textos">Piezas de escalera<br>
-    	      Artesanía para Decoración<br>
-    	      Juguetes de Maderas<br>
-    	      Muebles para Niños<br>
-   	        Tapicería</td>
-    	    <td class="textos">Av. Recreo esquina. Frankfort 377 (hacia la cordillera), Rancagua<br>
-    	      Fono: 2 250796  - Cel: 9449 8620<br>
-   	        contacto@muebleriaeltoqui.cl</td>
+    	    <td height="16" class="textos"><?php echo $columna1; ?></td>
+    	    <td class="textos"><?php echo $columna2; ?></td>
+    	    <td class="textos"><?php echo $direccion; ?><br>
+    	      <?php echo $telefono; ?><br>
+   	        <?php echo $correo; ?></td>
    	      </tr>
   	  </table>
   </div>
@@ -272,7 +275,7 @@ function MM_swapImage() { //v3.0
 <footer>
 	<div id="footer">
     	<div id="lineafooter"></div>
-        <div id="emagenic"> sitio desarrollado por emagenic.cl</div>
+        <div id="emagenic"> sitio desarrollado por <a href="http://emagenic.cl/" target="new" class="textos">emagenic.cl</a></div>
     </div>
 </footer>  
 </body>
