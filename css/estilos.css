@@ -153,7 +153,8 @@ nav {
 	font-weight: lighter;
 	font-weight: 100;
 	font-variant: normal;
-	padding-left: 20px;
+	padding-left: 10px;
+	text-decoration:none;
 }
 .detalle {
 	font-family: helvetica;
@@ -195,4 +196,22 @@ nav {
 	text-transform: uppercase;
 	color: #841e30;
 	font-weight: 100;
+}
+
+
+/* BASIC RESET */
+ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,fieldset,input{
+	margin:0; 
+	padding:0;
+}
+/* COMMON CLASSES */
+.break { 
+	clear:both;
+}
+.headerimg {
+	background-position: center top;
+	background-repeat: no-repeat;
+	width: 940px;
+	height: 140px;
+	position: absolute;
 }
